@@ -10,10 +10,34 @@ class WorkflowMain {
     def ANSI_YELLOW = "\u001B[33m"
 
      def requiredParams = [
-        "cohortName", "referencePanel", "popGroup", "plink_file_name", "outFolder", "releaseFolder", "allaleUpdate", "alleleRecode",
-        "geneticMap", "extAnnotation", "refFasta", "ref_panel_base_folder", "scriptDir", "windowSize", "windowCount", "ne", "pbwt_depth", "buffer_size", "options", "shapeitGenMap", "ref_panel_base_folder", "chr_rename", "mcmc_iterations", "pbwt_depth_shapeit",
-        "genetic_map", "additional_args", "x_imputation", "token", "chain",
-        "shapeit", "eagle", "impute", "chunker_tool", "bcftools", "plink", "imputationbot"
+        "cohortName",
+        "referencePanel",
+        "popGroup",
+        "plink_file_name",
+        "outFolder",
+        "releaseFolder",
+        "alleleUpdate",
+        "alleleRecode",
+        "geneticMap",
+        "extAnnotation",
+        "refFasta",
+        "ref_panel_base_folder",
+        "scriptDir",
+        "windowSize",
+        "windowCount",
+        "ne",
+        "pbwt_depth",
+        "buffer_size",
+        "shapeitGenMap",
+        "refpanelBasefolder",
+        "chr_rename",
+        "genetic_map",
+        "shapeit",
+        "eagle",
+        "impute",
+        "chunker_tool",
+        "bcftools",
+        "plink"
         ]
 
         for (param in requiredParams){

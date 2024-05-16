@@ -35,146 +35,173 @@
     ],
     "properties": {
         "cohortName": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the cohort to analyse"
         },
         "referencePanel": {
             "type": "string",
-            "default": "IGRPv1"
+            "default": "IGRPv1",
+            "description": "Imputation reference panel"
         },
         "popGroup": {
             "type": "string",
-            "default": "EUR"
+            "default": "EUR",
+            "description": "Cohort ancestry"
         },
         "plink_file_name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the ped/map file without suffix. E.g. /path/to/my_file.{ped,map} -> /path/to/my_file"
         },
         "outFolder": {
-            "type": "string"
+            "type": "string",
+            "description": "Directory storing intermediate results"
         },
         "releaseFolder": {
-            "type": "string"
+            "type": "string",
+            "description": "Directory storing final results. Can be the same as --outFolder"
         },
         "alleleUpdate": {
             "type": "string",
-            "default": "/shared/resources/genotyping/HumanCNV370-Quadv3_C.update_alleles.txt"
+            "default": "/shared/resources/genotyping/GSAMD-24v3-0-EA_20034606_A1.update_alleles.txt",
+            "description": "Allele file of the genotyping chip"
         },
         "alleleRecode": {
             "type": "string",
-            "default": "/netapp/nfs/resources/dbSNP/human_9606_b154_GRCh37p13/GCF_000001405.25.SNPS.dbSNP154.tab"
+            "default": "/netapp/nfs/resources/dbSNP/human_9606_b154_GRCh37p13/GCF_000001405.25.SNPS.dbSNP154.tab",
+            "description": "Allele recode file to fix alleles"
         },
         "geneticMap": {
             "type": "string",
-            "default": "/netapp/nfs/resources/gen_map/shapeit4"
+            "default": "/netapp/nfs/resources/gen_map/shapeit4",
+            "description": "SHAPEIT4 genetic map used by IMPUTE5"
         },
         "extAnnotation": {
             "type": "string",
-            "default": "/netapp/nfs/resources/dbSNP/human_9606_b154_GRCh37p13/GCF_000001405.25.vcf.gz"
+            "default": "/netapp/nfs/resources/dbSNP/human_9606_b154_GRCh37p13/GCF_000001405.25.vcf.gz",
+            "description": "dbSNP VCF to annotate variants"
         },
         "refFasta": {
             "type": "string",
-            "default": "/shared/resources/hgRef/hg19/hg19_nochr.fasta"
+            "default": "/shared/resources/hgRef/hg19/hg19_nochr.fasta",
+            "description": "Fasta file of the reference genome"
         },
         "ref_panel_base_folder": {
             "type": "string",
-            "default": "/shared/resources/references/VCF"
+            "default": "/shared/resources/references/VCF",
+            "description": "Directory storing imputation panel VCFs"
         },
         "scriptDir": {
             "type": "string",
-            "default": "$baseDir/script"
+            "default": "$baseDir/script",
+            "description": "Directory storing scripts for plots and statistics"
         },
         "windowSize": {
             "type": "integer",
-            "default": 5000000
+            "default": 5000000,
+            "description": "Minimum Window size in bp for chromosome chunking"
         },
         "windowCount": {
             "type": "integer",
-            "default": 3000
+            "default": 3000,
+            "description": "Minimal number of genotyped markers in the chunk"
         },
         "ne": {
             "type": "integer",
-            "default": 20000
+            "default": 20000,
+            "description": "Effective population size for IMPUTE5"
         },
         "pbwt_depth": {
             "type": "integer",
-            "default": 8
+            "default": 8,
+            "description": "Depth of PBWT indexes to condition on for IMPUTE5"
         },
         "buffer_size": {
             "type": "integer",
-            "default": 250
+            "default": 250,
+            "description": "Length of buffer region (in kb) to include on each side of the analysis window specified by the -r option of IMPUTE5"
         },
         "options": {
             "type": "string",
-            "default": "--out-gp-field"
+            "default": "--out-gp-field",
+            "description": "Additional IMPUTE5 flags"
         },
         "shapeitGenMap": {
             "type": "string",
-            "default": "/netapp/nfs/resources/1000GP_phase3/impute"
+            "default": "/netapp/nfs/resources/1000GP_phase3/impute",
+            "description": "Genetic Map used by SHAPEIT4"
         },
         "refpanelBasefolder": {
             "type": "string",
-            "default": "/shared/resources/references/HAP_LEGEND_SAMPLES"
+            "default": "/shared/resources/references/HAP_LEGEND_SAMPLES",
+            "description": "Directory storing reference panel haplotypes. Modify accordingly to --referencePanel"
         },
         "chr_rename": {
             "type": "string",
-            "default": "$baseDir/support_files/rename_chr_hg19.txt"
-        },
-        "mcmc_iterations": {
-            "type": "string",
-            "default": "--mcmc-iterations 10b,1p,1b,1p,1b,1p,1b,1p,10m"
-        },
-        "pbwt_depth_shapeit": {
-            "type": "string",
-            "default": "--pbwt-depth 8"
+            "default": "$baseDir/support_files/rename_chr_hg19.txt",
+            "description": "Utility file to rename chromosome correctly"
         },
         "genetic_map": {
             "type": "string",
-            "default": "/shared/software/eagle/Eagle_v2.4.1/tables/genetic_map_hg19_withX.txt.gz"
+            "default": "/shared/software/eagle/Eagle_v2.4.1/tables/genetic_map_hg19_withX.txt.gz",
+            "description": "Genetic Map used by Eagle_v2"
         },
         "additional_args": {
             "type": "string",
-            "default": "--vcfOutFormat z --noImpMissing"
+            "default": "--vcfOutFormat z --noImpMissing",
+            "description": "Additional Eagle_v2 flags"
         },
         "x_imputation": {
             "type": "string",
-            "default": "yes"
+            "default": "yes",
+            "description": "Enable TopMed imputation of chromosome X"
         },
         "token": {
-            "type": "string"
+            "type": "string",
+            "description": "File storing TopMed access token"
         },
         "password": {
-            "type": "string"
+            "type": "string",
+            "description": "Password used to decompress Topmed results"
         },
         "chain": {
             "type": "string",
-            "default": "/shared/resources/chainfiles/hg38ToHg19.over.chain.gz"
+            "default": "/shared/resources/chainfiles/hg38ToHg19.over.chain.gz",
+            "description": "Chainfile to perform liftover of TopMed results"
         },
         "shapeit": {
             "type": "string",
-            "default": "/share/apps/bio/bin/shapeit"
+            "default": "/share/apps/bio/bin/shapeit",
+            "description": "Path to SHAPEIT executable"
         },
         "eagle": {
             "type": "string",
-            "default": "/shared/software/eagle/Eagle_v2.4.1/eagle"
+            "default": "/shared/software/eagle/Eagle_v2.4.1/eagle",
+            "description": "Path to Eagle_v2 executable"
         },
         "impute": {
             "type": "string",
-            "default": "/home/nardone/software/impute5_v1.1.5/impute5_1.1.5_static"
+            "default": "/home/nardone/software/impute5_v1.1.5/impute5_1.1.5_static",
+            "description": "Path to IMPUTE5 executable"
         },
         "chunker_tool": {
             "type": "string",
-            "default": "/home/nardone/software/impute5_v1.2.0/imp5Chunker_v1.2.0_static"
+            "default": "/home/nardone/software/impute5_v1.2.0/imp5Chunker_v1.2.0_static",
+            "description": "Path to IMPUTE5 chunker tool executable"
         },
         "bcftools": {
             "type": "string",
-            "default": "/share/apps/bio/bin/bcftools"
+            "default": "/share/apps/bio/bin/bcftools",
+            "description": "Path to BCFTools executable"
         },
         "plink": {
             "type": "string",
-            "default": "/share/apps/bio/bin/plink"
+            "default": "/share/apps/bio/bin/plink",
+            "description": "Path to plink v1.9 executable"
         },
         "imputationbot": {
             "type": "string",
-            "default": "/home/nardone/software/imputationbot/imputationbot"
+            "default": "/home/nardone/software/imputationbot/imputationbot",
+            "description": "Path to imputationbot executable"
         }
     },
     "required": [
