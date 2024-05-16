@@ -1,0 +1,267 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/lisosome/imputeFlow/main/nextflow_schema.json",
+    "title": "imputeFlow pipeline parameters",
+    "description": "A Nextflow imputation pipeline.",
+    "type": "object",
+    "definitions": {
+        "general_information": {
+            "title": "Cohort Information",
+            "type": "string",
+            "fa_icon": "fas fa-terminal",
+            "description": " General information on the cohort",
+            "properties": {
+                "cohortName": {
+                    "type": "string",
+                    "description": "Name of your cohort",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "referencePanel": {
+                    "type":"string",
+                    "description": "Reference panel to use in the imputation",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "popGroup": {
+                    "type":"string",
+                    "description": "Ancestry of the cohort",
+                    "fa_icon": "fas fa-project-diagram"
+                }
+            },
+            "required": ["cohortName", "referencePanel", "popGroup"]
+        },
+        "paths": {
+            "title": "Paths of file required for the workflow",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Files required for the workflow",
+            "properties": {
+                "plink_file_name": {
+                    "type": "string",
+                    "description": "Map and ped file of your cohort. Please omit the suffix: e.g. path/to/my_cohort.ped -> path/to/my_cohort",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "outFolder": {
+                    "type": "string",
+                    "description": "Folder in which store the intermediate results of the pipeline",
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "releaseFolder": {
+                    "type": "string",
+                    "description": "Folder in which store the final results of the pipeline. Can be the same as outFolder",
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "allaleUpdate": {
+                    "type": "string",
+                    "description": "Allele update file for your genotyping chip",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "alleleRecode": {
+                    "type": "string",
+                    "description": "Tab separated file of variants and alleles in the correct build to fix allele switching",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "geneticMap": {
+                    "type": "string",
+                    "description": "Folder storing shapeit4 genetic maps",
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "extAnnotation": {
+                    "type": "string",
+                    "description": "dbSNP vcf to annotate the variants",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "refFasta": {
+                    "type": "string",
+                    "description": "Reference genome fasta file",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "ref_panel_base_folder": {
+                    "type": "string",
+                    "description": "Folder storing the imputation panel",
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "scriptDir": {
+                    "type": "string",
+                    "description": "Folder storing stats and plot scripts",
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-project-diagram"
+            }
+        },
+        "required": ["plink_file_name", "outFolder", "releaseFolder", "allaleUpdate", "alleleRecode", "geneticMap", "extAnnotation", "refFasta", "ref_panel_base_folder", "scriptDir"]
+    },
+    "processes": {
+        "title": "Processes parameters",
+        "type": "object",
+        "fa_icon": "fas fa-terminal",
+        "description": "Parameters of several imputation steps",
+        "properties": {
+            "windowSize": {
+                "type":"integer",
+                "description": "Window size for the chunk generation",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "windowCount": {
+                "type":"integer",
+                "description": "Minimal number of genotyped markers in the chunk",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "ne": {
+                "type":"integer",
+                "description": "Effective population size for IMPUTE5",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "pbwt_depth": {
+                "type":"integer",
+                "description": "Depth of PBWT indexes to condition on for IMPUTE5",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "buffer_size": {
+                "type":"integer",
+                "description": "Length of buffer region (in kb) to include on each side of the analysis window specified for IMPUTE5",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "options": {
+                "type":"string",
+                "description": "Additional flags for IMPUTE5",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "shapeitGenMap": {
+                "type": "string",
+                "description": "Genetic Map folder for SNP_CHECK process",
+                "format": "directory-path",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "refpanelBasefolder": {
+                "type": "string",
+                "description": "Folder storing imputation panel haplotypes",
+                "format": "directory-path",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "chr_rename": {
+                "type": "string",
+                "description": "Utility file to set the correct chromosomes",
+                "format": "file-path",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "mcmc_iterations": {
+                "type": "string",
+                "description": "Iteration sequence option for SHAPEIT4",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "pbwt_depth_shapeit": {
+                "type": "string",
+                "description": "Reducing the number of conditioning neighbours in the PBWT for SHAPEIT4",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "genetic_map": {
+                "type": "string",
+                "format": "file-path",
+                "description": "Genetic Map for Eagle",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "additional_args": {
+                "type": "string",
+                "description": "Additional flags for eagle phasing",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "x_imputation": {
+                "type": "string",
+                "description": "Enable chromosome X imputation on TopMed",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "token": {
+                "type": "string",
+                "format": "file-path",
+                "description": "Access token to TopMed imputation server. Generate one following the instruction at: https://imputationbot.readthedocs.io/en/latest/instances/",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "password": {
+                "type": "string",
+                "description": "Password for TopMed file decompression",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "chain": {
+                "type": "string",
+                "format": "file-path",
+                "description": "Chainfile for liftover of TopMed data to hg19",
+                "fa_icon": "fas fa-project-diagram"
+            }
+        },
+        "required": ["windowSize", "windowCount", "ne", "pbwt_depth", "buffer_size", "options", "shapeitGenMap", "ref_panel_base_folder", "chr_rename", "mcmc_iterations", "pbwt_depth_shapeit", "genetic_map", "additional_args", "x_imputation", "token", "chain"]
+    },
+    "tools": {
+        "title": "Imputation software and more",
+        "type": "object",
+        "fa_icon": "fas fa-terminal",
+        "description": "Path of the tools used in the pipeline",
+        "properties": {
+            "shapeit": {
+                "type": "string",
+                "format": "file-path",
+                "description": "SHAPEIT4 used to check snps",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "eagle": {
+                "type": "string",
+                "format": "file-path",
+                "description": "Eagle software used for phasing",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "impute": {
+                "type": "string",
+                "format": "file-path",
+                "description": "IMPUTE5 used for cohort imputation",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "chunker_tool": {
+                "type": "string",
+                "format": "file-path",
+                "description": "Impute chunker tool used to divide chromosomes in different regions",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "bcftools": {
+                "type": "string",
+                "format": "file-path",
+                "description": "BCFTools used to manipulate VCF files",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "plink": {
+                "type": "string",
+                "format": "file-path",
+                "description": "plink v1.9 used to perform initial QC",
+                "fa_icon": "fas fa-project-diagram"
+            },
+            "imputationbot": {
+                "type": "string",
+                "format": "file-path",
+                "description": "ImputationBot used to submit TopMed imputation job",
+                "fa_icon": "fas fa-project-diagram"
+            }
+            },
+            "required": ["shapeit", "eagle", "impute", "chunker_tool", "bcftools", "plink", "imputationbot"]
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/definitions/general_information"
+        },
+        {
+            "$ref": "#/definitions/paths"
+        },
+        {
+            "$ref": "#/definitions/processes"
+        },
+        {
+            "$ref": "#/definitions/tools"
+        }
+    ]
+}
