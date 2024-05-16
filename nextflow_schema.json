@@ -1,0 +1,210 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/imputeFlow/master/nextflow_schema.json",
+    "title": "imputeFlow pipeline parameters",
+    "description": "A Nextflow imputation pipeline for Medical Genetics at Burlo Garofolo.",
+    "type": "object",
+    "definitions": {
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "help": {
+                    "type": "boolean",
+                    "description": "Display help text.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/definitions/generic_options"
+        }
+    ],
+    "properties": {
+        "cohortName": {
+            "type": "string"
+        },
+        "referencePanel": {
+            "type": "string",
+            "default": "IGRPv1"
+        },
+        "popGroup": {
+            "type": "string",
+            "default": "EUR"
+        },
+        "plink_file_name": {
+            "type": "string"
+        },
+        "outFolder": {
+            "type": "string"
+        },
+        "releaseFolder": {
+            "type": "string"
+        },
+        "alleleUpdate": {
+            "type": "string",
+            "default": "/shared/resources/genotyping/HumanCNV370-Quadv3_C.update_alleles.txt"
+        },
+        "alleleRecode": {
+            "type": "string",
+            "default": "/netapp/nfs/resources/dbSNP/human_9606_b154_GRCh37p13/GCF_000001405.25.SNPS.dbSNP154.tab"
+        },
+        "geneticMap": {
+            "type": "string",
+            "default": "/netapp/nfs/resources/gen_map/shapeit4"
+        },
+        "extAnnotation": {
+            "type": "string",
+            "default": "/netapp/nfs/resources/dbSNP/human_9606_b154_GRCh37p13/GCF_000001405.25.vcf.gz"
+        },
+        "refFasta": {
+            "type": "string",
+            "default": "/shared/resources/hgRef/hg19/hg19_nochr.fasta"
+        },
+        "ref_panel_base_folder": {
+            "type": "string",
+            "default": "/shared/resources/references/VCF"
+        },
+        "scriptDir": {
+            "type": "string",
+            "default": "$baseDir/script"
+        },
+        "windowSize": {
+            "type": "integer",
+            "default": 5000000
+        },
+        "windowCount": {
+            "type": "integer",
+            "default": 3000
+        },
+        "ne": {
+            "type": "integer",
+            "default": 20000
+        },
+        "pbwt_depth": {
+            "type": "integer",
+            "default": 8
+        },
+        "buffer_size": {
+            "type": "integer",
+            "default": 250
+        },
+        "options": {
+            "type": "string",
+            "default": "--out-gp-field"
+        },
+        "shapeitGenMap": {
+            "type": "string",
+            "default": "/netapp/nfs/resources/1000GP_phase3/impute"
+        },
+        "refpanelBasefolder": {
+            "type": "string",
+            "default": "/shared/resources/references/HAP_LEGEND_SAMPLES"
+        },
+        "chr_rename": {
+            "type": "string",
+            "default": "$baseDir/support_files/rename_chr_hg19.txt"
+        },
+        "mcmc_iterations": {
+            "type": "string",
+            "default": "--mcmc-iterations 10b,1p,1b,1p,1b,1p,1b,1p,10m"
+        },
+        "pbwt_depth_shapeit": {
+            "type": "string",
+            "default": "--pbwt-depth 8"
+        },
+        "genetic_map": {
+            "type": "string",
+            "default": "/shared/software/eagle/Eagle_v2.4.1/tables/genetic_map_hg19_withX.txt.gz"
+        },
+        "additional_args": {
+            "type": "string",
+            "default": "--vcfOutFormat z --noImpMissing"
+        },
+        "x_imputation": {
+            "type": "string",
+            "default": "yes"
+        },
+        "token": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        },
+        "chain": {
+            "type": "string",
+            "default": "/shared/resources/chainfiles/hg38ToHg19.over.chain.gz"
+        },
+        "shapeit": {
+            "type": "string",
+            "default": "/share/apps/bio/bin/shapeit"
+        },
+        "eagle": {
+            "type": "string",
+            "default": "/shared/software/eagle/Eagle_v2.4.1/eagle"
+        },
+        "impute": {
+            "type": "string",
+            "default": "/home/nardone/software/impute5_v1.1.5/impute5_1.1.5_static"
+        },
+        "chunker_tool": {
+            "type": "string",
+            "default": "/home/nardone/software/impute5_v1.2.0/imp5Chunker_v1.2.0_static"
+        },
+        "bcftools": {
+            "type": "string",
+            "default": "/share/apps/bio/bin/bcftools"
+        },
+        "plink": {
+            "type": "string",
+            "default": "/share/apps/bio/bin/plink"
+        },
+        "imputationbot": {
+            "type": "string",
+            "default": "/home/nardone/software/imputationbot/imputationbot"
+        }
+    },
+    "required": [
+        "cohortName",
+        "referencePanel",
+        "popGroup",
+        "plink_file_name",
+        "outFolder",
+        "releaseFolder",
+        "alleleUpdate",
+        "alleleRecode",
+        "geneticMap",
+        "extAnnotation",
+        "refFasta",
+        "ref_panel_base_folder",
+        "scriptDir",
+        "windowSize",
+        "windowCount",
+        "ne",
+        "pbwt_depth",
+        "buffer_size",
+        "shapeitGenMap",
+        "refpanelBasefolder",
+        "chr_rename",
+        "genetic_map",
+        "shapeit",
+        "eagle",
+        "impute",
+        "chunker_tool",
+        "bcftools",
+        "plink"
+    ]
+}
