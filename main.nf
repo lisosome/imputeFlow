@@ -81,7 +81,7 @@ chromosome_ch = Channel.from(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
 include { preprocess } from './workflows/preprocess.nf'
 include { imputation } from './workflows/imputation.nf'
 include { stats } from './workflows/stats.nf'
-include { impute_x } from './X_imputation.nf'
+include { impute_x } from './workflows/X_imputation.nf'
 include { validateParameters; paramsHelp; paramsSummaryLog } from 'plugin/nf-schema'
 
 if (params.help) {
@@ -102,6 +102,8 @@ log.info paramsSummaryLog(workflow)
 
 workflow {
     
+    WorkflowMain.validate(params)
+
     if (params.x_imputation == "no" || params.x_imputation == null){
     preprocess(pl_files)
     phasing_out = preprocess.out[0]
