@@ -1,4 +1,4 @@
-include { ONLY_X; SNP_CHECK_X; VCF_ANNOTATE_X; PHASE_X; TOPMED_X; LIFTBACK; INFO_STATS_CHRX; IMPUTE_TAB_STATS_X; RELEASE_X } from './modules/impute_x'
+include { ONLY_X; SNP_CHECK_X; VCF_ANNOTATE_X; PHASE_X; TOPMED_X; LIFTBACK; INFO_STATS_CHRX; IMPUTE_TAB_STATS_X; RELEASE_X } from '../modules/impute_x'
 
 workflow impute_x {
     take:
