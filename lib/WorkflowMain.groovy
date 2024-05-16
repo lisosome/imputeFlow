@@ -1,4 +1,4 @@
-import nextflow.nextflow
+import nextflow.Nextflow
 
 class WorkflowMain {
     public static String citation(workflow) {
