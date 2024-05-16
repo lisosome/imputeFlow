@@ -1,5 +1,6 @@
 include { ONLY_X; SNP_CHECK_X; VCF_ANNOTATE_X; PHASE_X; TOPMED_X; LIFTBACK; INFO_STATS_CHRX; IMPUTE_TAB_STATS_X; RELEASE_X } from '../modules/impute_x.nf'
 include { ALL_FIX_SPLITTED; GET_DUPS; REMOVE_DUPS; SNP_CHECK; GET_FLIPPABLE; SNP_FLIP; PLINK2VCF; VCF_FIX_REF } from '../modules/preproc.nf'
+include { CONVERT_BIMBAM } from '../modules/imputation.nf'
 include { PDF_CHR } from '../modules/stats.nf'
 
 workflow impute_x {
