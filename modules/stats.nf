@@ -24,6 +24,9 @@ process INFO_STATS_CHUNKS {
         """
         mkdir -p ${chr}/CHUNKS
         chunk=\$(echo "${imputed_chunk}" | cut -d "." -f2)
+        
+        chmod +x ${params.scriptDir}/imputationStats.py
+        chmod +x ${params.scriptDir}/plot_manhattan.py
 
         ${params.bcftools} query -f "%CHROM\\t%POS\\t%ID\\t%REF\\t%ALT\\t%AF\\t%INFO/INFO\\n" ${imputed_chunk} | ${params.scriptDir}/imputationStats.py --tab ${chr}/CHUNKS/${chr}_\${chunk}_impute_summary --fig ${chr}/CHUNKS/${chr}_\${chunk}_impute_summary.png
         ${params.bcftools} query -f "%CHROM\\t%POS\\t%ID\\t%REF\\t%ALT\\t%AF\\t%INFO/INFO\\n" ${imputed_chunk} | ${params.scriptDir}/plot_manhattan.py --chunk --no-log --cols 0,1,6 --title 'Impute INFO score chr${chr} chunk \${chunk}' --image ${chr}/CHUNKS/${chr}_\${chunk}_impute_manhattan.png --ymax=1.2 -
@@ -42,6 +45,8 @@ process PDF_CHUNKS {
         mkdir -p ${chr}
         stat_file=\$(echo "${stats_file}" | cut -d " " -f1)
         basedir=\$(dirname \${stat_file})
+        chmod +x ${params.scriptDir}/pdf_report.py
+
         ${params.scriptDir}/pdf_report.py -m CHUNK -r ${chr} -b \${basedir} -o ${chr}/${chr}_impute_summary_report_by_chunk.pdf
         """
 }

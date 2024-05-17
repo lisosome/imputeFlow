@@ -174,6 +174,8 @@ process INFO_STATS_CHRX {
     script:
         """
         mkdir -p ${chr}
+        chmod +x ${params.scriptDir}/imputationStats.py
+        chmod +x ${params.scriptDir}/plot_manhattan.py
 
         ${params.bcftools} query -f "%CHROM\\t%POS\\t%ID\\t%REF\\t%ALT\\t%AF\\t%INFO/R2\\n" ${imputed_data} | ${params.scriptDir}/imputationStats.py --tab ${chr}/${chr}_impute_summary --fig ${chr}/${chr}_impute_summary.png
         ${params.bcftools} query -f "%CHROM\\t%POS\\t%ID\\t%REF\\t%ALT\\t%AF\\t%INFO/R2\\n" ${imputed_data} | ${params.scriptDir}/plot_manhattan.py --no-log --cols 0,1,6 --title 'Impute INFO score chr${chr}' --image ${chr}/${chr}_impute_manhattan.png --ymax=1.2 -
