@@ -61,6 +61,8 @@ process INFO_STATS_CHR {
     script:
         """
         mkdir -p ${chr}
+        chmod +x ${params.scriptDir}/imputationStats.py
+        chmod +x ${params.scriptDir}/plot_manhattan.py
 
         ${params.bcftools} query -f "%CHROM\\t%POS\\t%ID\\t%REF\\t%ALT\\t%AF\\t%INFO/INFO\\n" ${imputed_data} | ${params.scriptDir}/imputationStats.py --tab ${chr}/${chr}_impute_summary --fig ${chr}/${chr}_impute_summary.png
         ${params.bcftools} query -f "%CHROM\\t%POS\\t%ID\\t%REF\\t%ALT\\t%AF\\t%INFO/INFO\\n" ${imputed_data} | ${params.scriptDir}/plot_manhattan.py --no-log --cols 0,1,6 --title 'Impute INFO score chr${chr}' --image ${chr}/${chr}_impute_manhattan.png --ymax=1.2 -
@@ -80,6 +82,8 @@ process PDF_CHR {
         mkdir -p ${chr}
         stat_file=\$(echo "${chr_stats}" | cut -d " " -f1)
         basedir=\$(dirname \${stat_file})
+        chmod +x ${params.scriptDir}/pdf_report.py
+        
         ${params.scriptDir}/pdf_report.py -m CHR -r ${chr} -b \${basedir} -o ${chr}/${chr}_impute_summary_report.pdf
         """
 }
