@@ -21,7 +21,7 @@ Some of the software is not available as conda package, but compiled binaries or
 + java >= 11
 + conda
 + singularity
-+ [nextflow] (https://www.nextflow.io/docs/latest/overview.html)
++ [nextflow](https://www.nextflow.io/docs/latest/overview.html)
 + [bcftools](http://www.htslib.org/doc/)
 + [shapeit v2](https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html#download)
 + [shapeit v4](https://odelaneau.github.io/shapeit4/#documentation)
@@ -87,9 +87,9 @@ To run the pipeline, we need to download nextflow:
 ## Config file creation
 
 To configure the pipeline download and modify the nextlow.config file:
-    ```bash
-    wget https://raw.githubusercontent.com/lisosome/imputeFlow/main/nextflow.config
-    ```
+```bash
+wget https://raw.githubusercontent.com/lisosome/imputeFlow/main/nextflow.config
+```
 
 ### General information
 
